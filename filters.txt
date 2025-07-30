@@ -1,0 +1,8 @@
+grep
+cut
+sort
+more 
+diff
+tr
+sed
+awk

@@ -1,0 +1,33 @@
+history
+    2  clear
+    3  touch a1
+    4  mkdir test2
+    5  cat > a1
+    6  cat a1
+    7  mkdir -p test2/ab/cd/ef
+    8  ls
+    9  cd test2
+   10  ls
+   11  cd ab
+   12  ls
+   13  cd cd
+   14  ls
+   15  cd -
+   16  cd 
+   17  cp a1 /test2
+   18  ls
+   19  cd test2
+   20  ls
+   21  cp a1 test2
+   22  cd ..
+   23  ls
+   24  cp a1 test2
+   25  cd test2
+   26  ls
+   27  mv test2 test231
+   28  cd ..
+   29  ls
+   30  mv test2 test231
+   31  ls
+   32  history
+   33  history > notepad

@@ -1,0 +1,47 @@
+Service now ticketing tool 
+
+Incident : When problem occurs 
+
+ 
+
+Remedy – ticketing tool 
+
+ 
+
+Jira  
+
+ZenDesk 
+
+Solar Winds 
+
+L1 - P3 ,p4
+L3- P1 Production servers ( more than 500 users)
+
+Timelines : P1 - 2hours , work around , permenante fix
+
+SLA : Service  Level Agreement
+
+Outage , Critical , Urgent , 
+
+ITIL : COurse
+
+ps auxf | more
+
+
+journalctl
+
+
+lsof | grep -i "deleted"
+
+lsof -u | username
+
+
+clustering , bonding , fielsystem in read only mode , file system backup should be taken , shld fix it in maintainence mode
+
+IIIL Process - DOcumentation get basic knowledge
+
+file system corruption important to learn
+
+
+NFS file system hung how to resolve
+

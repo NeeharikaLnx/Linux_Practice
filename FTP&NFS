@@ -1,0 +1,85 @@
+FTP SetUp :
+Install the FTP Server:
+Choose an FTP server like vsftpd.
+Install it using your system's package manager (e.g., sudo apt install vsftpd on Debian/Ubuntu).
+Verify the service status: sudo systemctl status vsftpd.
+Enable and start the service if it's not running: sudo systemctl enable --now vsftpd.
+2. Configure Firewall:
+Allow FTP traffic through your firewall (e.g., UFW).
+Open ports 20 (data) and 21 (control): sudo ufw allow 20/tcp, sudo ufw allow 21/tcp.
+Allow passive mode connections (if used) by opening a range of high ports (e.g., 40000-50000) and configuring vsftpd to use them.
+3. Configure Users:
+Create dedicated FTP users or use existing system users.
+Consider jailing users to their home directories for security using chroot in vsftpd configuration.
+4. Create FTP Folder and Set Permissions:
+Create the directory where files will be stored (e.g., /var/ftp).
+Set appropriate permissions to allow FTP users to read and write files.
+5. Configure and Secure vsftpd:
+Edit the vsftpd configuration file (e.g., /etc/vsftpd.conf).
+Enable or disable features like anonymous access, local user access, write access, and passive mode.
+Configure chroot for user isolation.
+6. Secure vsftpd with SSL/TLS (FTPS):
+Generate or obtain SSL/TLS certificates.
+Configure vsftpd to use SSL/TLS for encrypted connections, enhancing security.
+
+FTP setup :  
+sudo apt install vsftpd
+sudo systemctl status vsftpd
+sudo systemctl enable --now vsftpd
+sudo ufw allow 20/tcp
+sudo ufw allow 21/tcp
+sudo ufw allow 990/tcp
+sudo ufw allow 5000:10000/tcp
+sudo adduser ftpuser
+sudo mkdir /ftp
+sudo nano /etc/vsftpd.conf
+anonymous_enable=NO
+
+local_enable=YES
+
+write_enable=YES
+
+Command	 Function
+pwd	     print the current working directory
+cwd	     change working directory
+dele	   delete the specified file
+cdup	   change to the parent directory
+help	   displays help information
+cd	     change the working directory
+get      filename	download the specified file
+put      filename	uploads the specified file
+bye	     end FTP session
+
+
+NFS :  Server
+yum -y install nfs-utils apt-get install nfs-kernel-server
+sudo mkdir /mnt/myshareddir
+sudo chown nobody:nogroup /mnt/myshareddir #no-one is owner sudo chmod 777 /mnt/myshareddir #everyone can modify files
+To enable access to a single client	/mnt/myshareddir {clientIP}(rw,sync,no_subtree_check)
+To enable access to several clients	/mnt/myshareddir {clientIP-1}(rw,sync,no_subtree_check) {clientIP-2}(...) {clientIP-3}(...)
+To enable access to an entire subnet	/mnt/myshareddir {subnetIP}/{subnetMask}(rw,sync,no_subtree_check)
+
+Client :
+sudo yum install nfs-utils
+sudo mkdir /var/locally-mounted
+sudo mount -t nfs 192.168.20.100:/myshareddir /var/locally-mounted
+To verify that the NFS share is mounted successfully, run the mount command or df -h.
+
+Mounting NFS File Shares Permanently
+Remote NFS directories can be automatically mounted when the local system is started. You can define this in the /etc/fstab file. In order to ensure an NFS file share is mounted locally on startup, you need to add a line to this file with the relevant file share details.
+
+To automatically mount NFS shares on Linux, do the following:
+
+Create a local directory that will be used to mount the file share.
+sudo mkdir /var/locally-mounted
+Edit the /etc/fstab file using the nano command or any text editor.
+Add a line defining the NFS share. Insert a tab character between each parameter. It should appear as one line with no line breaks.
+The last three parameters indicate NFS options (which we set to default), dumping of file system and filesystem check (these are typically not used so we set them to 0).
+
+{IP of NFS server}:{folder path on server} /var/locally-mounted nfs defaults 0 0
+Now mount the file share using the following command. The next time the system starts, the folder will be mounted automatically.
+
+
+
+Samba :
+ 
